@@ -302,10 +302,10 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_XROrigin: {fileID: 0}
+  m_XROrigin: {fileID: 573911143}
   m_ExcludeUITouches: 1
   m_ARSessionOrigin: {fileID: 0}
-  m_PlacementPrefab: {fileID: 5807721758094907903, guid: 003bc0c5639adca4fa0939b578f918d9,
+  m_PlacementPrefab: {fileID: 5690658050353677852, guid: 907dee88370ce410ba7fb57775eb5324,
     type: 3}
   m_FallbackLayerMask:
     serializedVersion: 2
@@ -497,7 +497,7 @@ MonoBehaviour:
   m_Camera: {fileID: 1200707161}
   m_OriginBaseGameObject: {fileID: 573911141}
   m_CameraFloorOffsetObject: {fileID: 1022013596}
-  m_RequestedTrackingOriginMode: 0
+  m_RequestedTrackingOriginMode: 1
   m_CameraYOffset: 1.1176
 --- !u!4 &573911144
 Transform:
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 4365995008495725485, guid: c4f3d5a2eea6f49418876ba67a8be9d0,
+  m_PlanePrefab: {fileID: 1547357349282633351, guid: 13f104c50bff5406b8cf6dd131813847,
     type: 3}
   m_DetectionMode: -1
 --- !u!114 &573911146
@@ -542,7 +542,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa17d122634046b4a8e23048891fafc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RaycastPrefab: {fileID: 0}
+  m_RaycastPrefab: {fileID: 2560155624850315797, guid: 4bc927c80fed94358a9c78a01f972bf6,
+    type: 3}
 --- !u!1 &630492903
 GameObject:
   m_ObjectHideFlags: 0
@@ -1116,7 +1117,7 @@ MonoBehaviour:
   m_OnSelectExited:
     m_PersistentCalls:
       m_Calls: []
-  m_XROrigin: {fileID: 0}
+  m_XROrigin: {fileID: 573911143}
   m_RaycastMask:
     serializedVersion: 2
     m_Bits: 4294967295
