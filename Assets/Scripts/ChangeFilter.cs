@@ -7,6 +7,10 @@ public class ChangeFilter : MonoBehaviour
 {
     public GameObject facePrefab;
 
+    public GameObject redPrefab;
+    public GameObject greenPrefab;
+    public GameObject bluePrefab;
+
     public Material redMaterial;
     public Material greenMaterial;
     public Material blueMaterial;
@@ -23,17 +27,14 @@ public class ChangeFilter : MonoBehaviour
         materialsCopy[0] = greenMaterial;
         meshRenderer.materials = materialsCopy;
 
-        faceManager.enabled = false;
-        faceManager.enabled = true;
+        faceManager.facePrefab = greenPrefab;
     }
     public void chooseRedFilter()
     {
         var materialsCopy = meshRenderer.materials;
         materialsCopy[0] = redMaterial;
         meshRenderer.materials = materialsCopy;
-
-        faceManager.enabled = false;
-        faceManager.enabled = true;
+        faceManager.facePrefab = redPrefab;
     }
 
     public void chooseBlueFilter()
@@ -42,7 +43,11 @@ public class ChangeFilter : MonoBehaviour
         materialsCopy[0] = blueMaterial;
         meshRenderer.materials = materialsCopy;
 
-        faceManager.enabled = false;
-        faceManager.enabled = true;
+        faceManager.facePrefab = bluePrefab;
+    }
+
+    public void ClickPhoto()
+    {
+        ScreenCapture.CaptureScreenshot("Photo.png");
     }
 }
