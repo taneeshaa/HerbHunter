@@ -6,11 +6,45 @@ using UnityEngine;
 public class LoadInfo : MonoBehaviour
 {
     private GameObject infoPlant;
+    [HideInInspector] public string currentTarget;
+    private GameObject currentObject;
     public void DisplayInfo()
     {
-        var currentObject = GameObject.FindGameObjectWithTag("3DObject");
+        Debug.Log(currentTarget);
+        currentObject = GameObject.FindGameObjectWithTag(currentTarget);
         infoPlant = currentObject.transform.GetChild(0).gameObject;
-        infoPlant.SetActive(true);
+        infoPlant.SetActive(true);  
+        Debug.Log(infoPlant.name);
     }
 
+    public void UpdateTargetDiscoBall()
+    {
+        currentTarget = "DiscoBall";
+        Debug.Log(currentTarget);
+    }
+    public void UpdateTargetAloe()
+    {
+        currentTarget = "Aloe";
+        Debug.Log(currentTarget);
+    }
+    public void UpdateTargetBasil()
+    {
+        currentTarget = "Basil";
+        Debug.Log(currentTarget);
+    }
+    public void UpdateTargetCoriander()
+    {
+        currentTarget = "Coriander";
+        Debug.Log(currentTarget);
+    }
+    public void UpdateTargetBamboo()
+    {
+        currentTarget = "Bamboo";
+        Debug.Log(currentTarget);
+    }
+    public void UpdateTargetLemon()
+    {
+        currentTarget = "Lemon";
+        Debug.Log(currentTarget);
+    }
 }
