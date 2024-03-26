@@ -13,7 +13,8 @@ public class LoadInfo : MonoBehaviour
         Debug.Log(currentTarget);
         currentObject = GameObject.FindGameObjectWithTag(currentTarget);
         infoPlant = currentObject.transform.GetChild(0).gameObject;
-        infoPlant.SetActive(true);  
+        infoPlant.SetActive(true);
+        infoPlant.GetComponent<InfoAudio>().VoiceOver.Play();
         Debug.Log(infoPlant.name);
     }
 

@@ -20,6 +20,7 @@ public class Gaze : MonoBehaviour
             if (go.CompareTag("hasInfo"))
             {
                 OpenInfo(go.GetComponent<InfoBehaviour>());
+                
             }
         }
         else
@@ -35,6 +36,7 @@ public class Gaze : MonoBehaviour
             if(info == desiredInfo)
             {
                 info.OpenInfo();
+                
             }
             else
             {
