@@ -40,7 +40,7 @@ public class Raycast_script : MonoBehaviour
                 else
                 {
                     spawnedObject.transform.position = hitPosition;
-                }
+                } 
             }
         }
     }
