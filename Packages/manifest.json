@@ -1,7 +1,7 @@
 {
-    "dependencies": {
-    "com.ptc.vuforia.engine": "file:com.ptc.vuforia.engine-10.22.5.tgz",
+  "dependencies": {
     "com.autodesk.fbx": "5.1.1",
+    "com.unity.barracuda": "https://github.com/Unity-Technologies/barracuda-release.git",
     "com.unity.collab-proxy": "2.2.0",
     "com.unity.device-simulator.devices": "1.0.0",
     "com.unity.ide.rider": "3.0.27",
@@ -16,7 +16,6 @@
     "com.unity.visualscripting": "1.9.1",
     "com.unity.xr.arcore": "5.1.2",
     "com.unity.xr.arfoundation": "5.1.2",
-    "com.unity.xr.arkit": "5.1.2",
     "com.unity.xr.interaction.toolkit": "2.5.2",
     "com.unity.xr.object-capture": "1.0.0-preview.3",
     "com.unity.modules.ai": "1.0.0",
