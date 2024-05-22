@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/ImageTargets.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GazeInteractor.unity
     guid: c497c5cc5d764064a83a2e1fbb177d36
   - enabled: 0
@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Tank.unity
     guid: f4c37b23cdafe7747bc4ed5ddbb64f4a
+  - enabled: 1
+    path: Assets/Scenes/PlantAPICall.unity
+    guid: 1d6b355c3b2040642b7629e716bfb4e0
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 1c9b847e2ba53d24da46b3e73508f80f,
       type: 2}
