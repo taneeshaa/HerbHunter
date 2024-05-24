@@ -29,9 +29,9 @@ public class GetLocation : MonoBehaviour
         
         yield return www.SendWebRequest();
 
-        if(www.isNetworkError || www.isHttpError)
+        if (www.result != UnityWebRequest.Result.Success)
         {
-            yield break;
+            Debug.LogError("Error: " + www.error);
         }
 
         ip = JsonUtility.FromJson<Ip>(www.downloadHandler.text);
@@ -49,9 +49,9 @@ public class GetLocation : MonoBehaviour
 
         yield return www.SendWebRequest();
 
-        if(www.isNetworkError || www.isHttpError)
+        if (www.result != UnityWebRequest.Result.Success)
         {
-            yield break;
+            Debug.LogError("Error: " + www.error);
         }
 
         Info = JsonUtility.FromJson<LocationInfo>(www.downloadHandler.text);

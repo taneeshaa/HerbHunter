@@ -57,9 +57,9 @@ public class WeatherData : MonoBehaviour
 
         yield return www.SendWebRequest();
 
-        if (www.isNetworkError || www.isHttpError)
+        if (www.result != UnityWebRequest.Result.Success)
         {
-            yield break;
+            Debug.LogError("Error: " + www.error);
         }
 
         Info = JsonUtility.FromJson<WeatherInfo>(www.downloadHandler.text);

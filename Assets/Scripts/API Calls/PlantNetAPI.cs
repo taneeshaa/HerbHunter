@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.Networking;
 using TMPro;
+using System;
 
 public class PlantNetAPI : MonoBehaviour
 {
@@ -15,8 +16,10 @@ public class PlantNetAPI : MonoBehaviour
     public TakePhotos takePhotos;
     public TextMeshProUGUI responseCode;
     public TextMeshProUGUI plantText;
+
+    public string commonName;
+    public string scientificName;
     // Paths to your images
-    private string imagePath1 = "Assets/Images/image_1.jpeg";
     private string imagePath2 = "Assets/Images/image_2.jpeg";
 
     void Start()
@@ -33,21 +36,19 @@ public class PlantNetAPI : MonoBehaviour
     IEnumerator IdentifyPlant()
     {
         // Load image bytes
-        //byte[] imageBytes1 = File.ReadAllBytes(imagePath1);
-        //byte[] imageBytes2 = File.ReadAllBytes(imagePath2);
+        byte[] imageBytes2 = File.ReadAllBytes(imagePath2);
 
-        byte[] imageBytes1 = File.ReadAllBytes(takePhotos.filePath);
+        //byte[] imageBytes1 = File.ReadAllBytes(takePhotos.filePath);
 
         // Create a WWWForm and add the images and other data
         WWWForm form = new WWWForm();
-        //form.AddBinaryData("images", imageBytes1, "image_1.jpeg", "image/jpeg");
-        //form.AddBinaryData("images", imageBytes2, "image_2.jpeg", "image/jpeg");
+        form.AddBinaryData("images", imageBytes2, "image_2.jpeg", "image/jpeg");
 
-        form.AddBinaryData("images", imageBytes1, takePhotos.fileName, "image/png");
+        //form.AddBinaryData("images", imageBytes1, takePhotos.fileName, "image/png");
         
 
-        //form.AddField("organs", "flower");
         form.AddField("organs", "leaf");
+        //form.AddField("organs", "leaf");
 
         // Create UnityWebRequest
         using (UnityWebRequest www = UnityWebRequest.Post(apiEndpoint, form))
@@ -61,22 +62,19 @@ public class PlantNetAPI : MonoBehaviour
             }
             else
             {
-                // Get the response
                 string jsonResult = www.downloadHandler.text;
                 responseCode.text = "Response Code: " + www.responseCode;
-                //Debug.Log("Response: " + jsonResult);
 
                 // Parse and display the JSON result
-                // You can use JsonUtility or a third-party library like Newtonsoft.Json for parsing
-                // Here is an example of simple parsing using Unity's JsonUtility
                 PlantNetResponse response = JsonUtility.FromJson<PlantNetResponse>(jsonResult);
                 Debug.Log("Plant Identifications:");
-                plantText.text = response.results[0].species.scientificNameWithoutAuthor;
-                foreach (var result in response.results)
-                {
-                    //Debug.Log("Species: " + result.species.scientificNameWithoutAuthor);
-                    //Debug.Log("Score: " + result.score);
-                }
+
+                PlantNetResult topResult = response.results[0];
+
+                commonName = topResult.species.commonNames[0];
+                scientificName = topResult.species.scientificNameWithoutAuthor;
+
+                plantText.text = commonName;
             }
         }
     }
@@ -100,5 +98,6 @@ public class PlantNetResult
 public class PlantNetSpecies
 {
     public string scientificNameWithoutAuthor;
+    public string[] commonNames;
 }
 
