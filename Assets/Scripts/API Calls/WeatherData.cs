@@ -17,6 +17,7 @@ public class WeatherData : MonoBehaviour
 
     public TextMeshProUGUI VisualLocation;
     public TextMeshProUGUI VisualTemp;
+    public TextMeshProUGUI VisualWeather;
 
     public string API_key;
     public void Begin()
@@ -42,9 +43,10 @@ public class WeatherData : MonoBehaviour
             }
         }
 
-        VisualLocation.text = Info.name + ", " + Info.sys.country;
-        VisualTemp.text = Info.main.temp.ToString();
-        
+        VisualLocation.text = getLocation.Info.city + ", " + Info.sys.country;
+        VisualTemp.text = KelvinToCelsius(Info.main.temp).ToString().Substring(0, 4) + " C";
+        VisualWeather.text = Info.weather[0].main;
+
     }
 
     private IEnumerator GetWeatherInfo()
@@ -63,6 +65,11 @@ public class WeatherData : MonoBehaviour
         }
 
         Info = JsonUtility.FromJson<WeatherInfo>(www.downloadHandler.text);
+    }
+
+    public static double KelvinToCelsius(double kelvin)
+    {
+        return kelvin - 273.15;
     }
 }
 [Serializable]

@@ -14,13 +14,15 @@ public class PlantNetAPI : MonoBehaviour
     private string apiEndpoint;
 
     public TakePhotos takePhotos;
-    public TextMeshProUGUI responseCode;
+    public PlantDetails plantDetails;
+    //public TextMeshProUGUI responseCode;
     public TextMeshProUGUI plantText;
 
     public string commonName;
     public string scientificName;
     // Paths to your images
     private string imagePath2 = "Assets/Images/image_2.jpeg";
+
 
     void Start()
     {
@@ -36,15 +38,15 @@ public class PlantNetAPI : MonoBehaviour
     IEnumerator IdentifyPlant()
     {
         // Load image bytes
-        byte[] imageBytes2 = File.ReadAllBytes(imagePath2);
+        //byte[] imageBytes2 = File.ReadAllBytes(imagePath2);
 
-        //byte[] imageBytes1 = File.ReadAllBytes(takePhotos.filePath);
+        byte[] imageBytes1 = File.ReadAllBytes(takePhotos.filePath);
 
         // Create a WWWForm and add the images and other data
         WWWForm form = new WWWForm();
-        form.AddBinaryData("images", imageBytes2, "image_2.jpeg", "image/jpeg");
+        //form.AddBinaryData("images", imageBytes2, "image_2.jpeg", "image/jpeg");
 
-        //form.AddBinaryData("images", imageBytes1, takePhotos.fileName, "image/png");
+        form.AddBinaryData("images", imageBytes1, takePhotos.fileName, "image/png");
         
 
         form.AddField("organs", "leaf");
@@ -63,7 +65,7 @@ public class PlantNetAPI : MonoBehaviour
             else
             {
                 string jsonResult = www.downloadHandler.text;
-                responseCode.text = "Response Code: " + www.responseCode;
+                //responseCode.text = "Response Code: " + www.responseCode;
 
                 // Parse and display the JSON result
                 PlantNetResponse response = JsonUtility.FromJson<PlantNetResponse>(jsonResult);
@@ -75,6 +77,11 @@ public class PlantNetAPI : MonoBehaviour
                 scientificName = topResult.species.scientificNameWithoutAuthor;
 
                 plantText.text = commonName;
+
+                //update plant info
+                plantDetails.UpdatePlantInfo();
+
+
             }
         }
     }

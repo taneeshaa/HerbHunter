@@ -1,9 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlantDetails : MonoBehaviour
 {
+    public WeatherData weatherData;
+    private WeatherInfo weatherInfo;
+    public PlantNetAPI plantNetAPI;
+    public TextMeshProUGUI plantInfo;
+    public TextMeshProUGUI plantTip;
+
+    private int weatherCode;
+
+    //Dictionaries
     public Dictionary<string, string> Info = new Dictionary<string, string>()
         {
             {"Azadirachta indica", "Neem is a fast-growing tree that can reach a height of 15–20 meters. It is known for its medicinal properties." },
@@ -446,4 +456,115 @@ public class PlantDetails : MonoBehaviour
             {"Terminalia catappa", "Indian Almond trees can still thrive under cloudy sky conditions, but may experience slower growth rates due to reduced sunlight. Monitor soil moisture levels carefully to ensure proper hydration during periods of decreased sunlight."},
             {"Dalbergia latifolia", "Indian Rosewood trees can still thrive under cloudy sky conditions, but may experience slower growth rates due to reduced sunlight. Monitor soil moisture levels carefully to ensure proper hydration during periods of decreased sunlight."},
         };
+
+    public void UpdatePlantInfo()
+    {
+        Debug.Log("update plant info");
+        //plantInfo.text = Info["Hibiscus rosa-sinensis"];
+        plantInfo.text = Info[plantNetAPI.scientificName];
+
+        weatherCode = weatherData.Info.weather[0].id;
+        switch (weatherCode)
+        {
+            case 200:
+            case 201:
+            case 202:
+            case 210:
+            case 211:
+            case 212:
+            case 221:
+            case 230:
+            case 231:
+            case 232:
+                plantTip.text = ThunderStormTip[plantNetAPI.scientificName];
+                break;
+
+            case 300:
+            case 301:
+            case 302:
+            case 310:
+            case 311:
+            case 312:
+            case 313:
+            case 314:
+            case 321:
+                plantTip.text = DrizzleTip[plantNetAPI.scientificName];
+                break;
+
+            case 500:
+            case 501:
+            case 502:
+            case 503:
+            case 504:
+            case 511:
+            case 520:
+            case 521:
+            case 522:
+            case 531:
+                plantTip.text = RainTip[plantNetAPI.scientificName];
+                break;
+
+            case 600:
+            case 601:
+            case 602:
+            case 611:
+            case 612:
+            case 613:
+            case 615:
+            case 616:
+            case 620:
+            case 621:
+            case 622:
+                plantTip.text = SnowTip[plantNetAPI.scientificName];
+                break;
+
+            case 701:
+                plantTip.text = Tip701[plantNetAPI.scientificName];
+                break;
+
+            case 711:
+                plantTip.text = Tip711[plantNetAPI.scientificName];
+                break;
+
+            case 721:
+                plantTip.text = Tip721[plantNetAPI.scientificName];
+                break;
+
+            case 731:
+                plantTip.text = Tip731[plantNetAPI.scientificName];
+                break;
+
+            case 741:
+                plantTip.text = Tip741[plantNetAPI.scientificName];
+                break;
+
+            case 751:
+                plantTip.text = Tip751[plantNetAPI.scientificName];
+                break;
+
+            case 761:
+                plantTip.text = Tip761[plantNetAPI.scientificName];
+                break;
+
+            case 771:
+                plantTip.text = Tip771[plantNetAPI.scientificName];
+                break;
+
+            case 800:
+                plantTip.text = ClearTip[plantNetAPI.scientificName];
+                break;
+
+            case 801:
+            case 802:
+            case 803:
+            case 804:
+                plantTip.text = CloudyTip[plantNetAPI.scientificName];
+                break;
+        }
+    }
+
+    private void Start()
+    {
+        weatherInfo = weatherData.Info;
+    }
 }
